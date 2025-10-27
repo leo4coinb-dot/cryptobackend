@@ -125,14 +125,16 @@ function authMiddleware(req, res, next) {
 // === CHECK PAYMENT ===
 app.get("/check-payment/:address", authMiddleware, async (req, res) => {
   const userAddress = req.params.address.toLowerCase();
-  // TEST: forza premium per un indirizzo specifico
-if (address.toLowerCase() === "0xa73897662DC6e7f8F67691859EcA8A0C28994046".toLowerCase()) {
+ // TEST: forza premium per un indirizzo specifico
+if (userAddress === "0xa73897662DC6e7f8F67691859EcA8A0C28994046".toLowerCase()) {
   return res.json({
     success: true,
     is_premium: true,
-    premium_until: "2099-12-31"
+    premium_until: "2099-12-31",
+    message: "✅ Modalità test: account premium simulato"
   });
 }
+
 
   if (!MY_RECEIVE_WALLET)
     return res.status(500).json({ error: "Server missing MY_RECEIVE_WALLET" });
